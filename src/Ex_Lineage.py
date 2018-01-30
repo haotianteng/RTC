@@ -12,7 +12,7 @@ from Queue import Queue
 from difflib import SequenceMatcher as SM
 import time
 
-Meta_path = "../Test/MetaGenomics_Data"
+Meta_path = "../test"
 species_list = Meta_path + "/species_list.dat"
 THREAD_NUM =6
 
