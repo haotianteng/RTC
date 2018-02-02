@@ -57,11 +57,11 @@ def fn_kingdom(fast5_folder,read_sp,sp_kingdom):
                 read_id = list(root['/Raw/Reads'].values())[0].attrs['read_id']
                 if read_id in read_sp.keys():
                     kd = sp_kingdom[read_sp[read_id]]
-                f_kd[f] = kd
-                if kd in kd_f.keys():
-                    kd_f[kd].append(f)
-                else:
-                    kd_f[kd] = [f]
+                    f_kd[f] = kd
+                    if kd in kd_f.keys():
+                        kd_f[kd].append(f)
+                    else:
+                        kd_f[kd] = [f]
     return f_kd,kd_f
 def run(args):
     if len(args)<5:
@@ -84,6 +84,7 @@ def run(args):
     print("Filename -> kingdom.")
     f_kd,kd_f = fn_kingdom(f5_dir,read_sp,sp_kd)
     output_path =os.path.join(o_dir,'filename_kingdom.csv')
+    print("%d files has been establish a map"%(len(f_kd.keys())))
     print("Write output to %s"%(output_path))
     if not os.path.isdir(o_dir):
         os.mkdir(o_dir)
