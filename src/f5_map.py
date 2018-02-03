@@ -53,8 +53,12 @@ def fn_kingdom(fast5_folder,read_sp,sp_kingdom):
     for cr_dir,_,file_list in os.walk(fast5_folder):
         for f in file_list:
             if f.endswith('fast5') or f.endswith('f5'):
-                root = h5py.File(os.path.join(cr_dir,f),'r')
-                read_id = list(root['/Raw/Reads'].values())[0].attrs['read_id']
+                try:
+                    root = h5py.File(os.path.join(cr_dir,f),'r')
+                    read_id = list(root['/Raw/Reads'].values())[0].attrs['read_id']
+                except:
+                    print("Fail to read id for %s"%(f))
+                    continue
                 if read_id in read_sp.keys():
                     kd = sp_kingdom[read_sp[read_id]]
                     f_kd[f] = kd
